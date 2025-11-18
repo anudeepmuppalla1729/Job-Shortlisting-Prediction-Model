@@ -3,19 +3,17 @@ import json
 
 def clean_dataset(input_path, output_path):
 
-    # ----------------------------
     # Load raw data
-    # ----------------------------
+    
     df = pd.read_csv(input_path)
 
-    # ----------------------------
     # Remove duplicate rows
-    # ----------------------------
+
     df = df.drop_duplicates()
 
-    # ----------------------------
+
     # Drop rows with missing important values
-    # ----------------------------
+
     df = df.dropna(subset=[
         "candidate_skills", 
         "recruiter_skill_weights",
@@ -84,6 +82,6 @@ def clean_dataset(input_path, output_path):
 
 # Run cleaning
 clean_dataset(
-    input_path="raw/Raw_Data.csv",
-    output_path="processed/cleaned_dataset.csv"
+    input_path="../raw/Raw_Data.csv",
+    output_path="../processed/cleaned_dataset.csv"
 )
