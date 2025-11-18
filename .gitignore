@@ -2,3 +2,5 @@
 synthetic_matching_dataset_testing.xlsx
 data/raw/Raw_Data.csv
 data/processed
+__pycache__/
+*.pyc
