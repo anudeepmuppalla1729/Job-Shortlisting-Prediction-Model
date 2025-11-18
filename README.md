@@ -80,9 +80,12 @@ To make the data usable by ML, raw fields are converted into numerical features:
 
 Measures how well candidate skills match recruiter’s weighted skills.
 
-weighted_match=∑(candidate has skill×weight)∑(all recruiter weights)weighted_match = \frac{\sum(\text{candidate has skill} \times \text{weight})}{\sum(\text{all recruiter weights})}
+Let  $weighted match = 
+\frac{\sum(\text{candidate has skill} \times \text{weight})}
+{\sum(\text{all recruiter weights})}$.
 
-weighted_match=∑(all recruiter weights)∑(candidate has skill×weight)
+
+
 
 Range → **0.0 to 1.0**
 
