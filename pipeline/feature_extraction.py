@@ -3,18 +3,14 @@ import numpy as np
 import ast
 
 def extract_features(df):
-    # Ensure list/dict are python objects
     df["candidate_skills_list"] = df["candidate_skills_list"].apply(ast.literal_eval)
     df["recruiter_priority_list"] = df["recruiter_priority_list"].apply(ast.literal_eval)
     df["recruiter_skill_weights_dict"] = df["recruiter_skill_weights_dict"].apply(ast.literal_eval)
 
-    # 1. CANDIDATE_SKILL_COUNT
     df["candidate_skill_count"] = df["candidate_skills_list"].apply(len)
 
-    # 2. RECRUITER_SKILL_COUNT
     df["recruiter_skill_count"] = df["recruiter_skill_weights_dict"].apply(len)
 
-    # 3. WEIGHTED_MATCH_SUM
     def compute_weighted_match(row):
         candidate_skills = set(row["candidate_skills_list"])
         recruiter_weights = row["recruiter_skill_weights_dict"]
@@ -22,17 +18,14 @@ def extract_features(df):
 
     df["weighted_match_sum"] = df.apply(compute_weighted_match, axis=1)
 
-    # 4. toatal_recruiter_weight
     df["total_recruiter_weight"] = df["recruiter_skill_weights_dict"].apply(lambda d: sum(d.values()))
 
-    # 5. weighted_match_ratio
     df["weighted_match_ratio"] = df.apply(
         lambda row: row["weighted_match_sum"] / row["total_recruiter_weight"]
         if row["total_recruiter_weight"] > 0 else 0,
         axis=1
     )
 
-    # 6. label_score (Tartget Variable)
     def compute_label_score(row):
         noise = np.random.normal(0, 0.20)
         score = (

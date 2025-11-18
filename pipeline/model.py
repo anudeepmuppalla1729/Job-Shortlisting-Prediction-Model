@@ -75,9 +75,6 @@ def train_model(df):
     return final_model
 
 
-# ============================================================
-# 3. Predict For a Single Candidate–Job Pair
-# ============================================================
 
 def predict_single(model, features: dict):
     """
@@ -102,9 +99,6 @@ def predict_single(model, features: dict):
     }
 
 
-# ============================================================
-# 4. Run Training (if running this file directly)
-# ============================================================
 
 if __name__ == "__main__":
     print("Loading dataset...")
@@ -113,7 +107,6 @@ if __name__ == "__main__":
     print("Training model...")
     model = train_model(df)
 
-    # Example prediction
     example = {
         "candidate_skill_count": 6,
         "recruiter_skill_count": 4,

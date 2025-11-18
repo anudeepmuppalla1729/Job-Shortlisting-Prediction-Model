@@ -68,9 +68,7 @@ def process_raw_and_predict(raw_input_path: str,
     features_df["predicted_score"] = preds
     features_df["shortlist"] = features_df["predicted_score"].apply(lambda s: "Yes" if s >= 3.5 else "No")
 
-    # 5) Attach predictions back to the ORIGINAL raw dataset if possible
-    # We prefer to return/save the raw dataset with a new `predicted_score` column per your request.
-    # Merge on identifiers if present; otherwise fall back to saving the features+predictions.
+    # 5) Attach predictions back to the ORIGINAL raw dataset 
     pred_cols = ["predicted_score", "shortlist"]
 
     if ("candidate_id" in raw_df.columns and "job_id" in raw_df.columns
@@ -84,13 +82,11 @@ def process_raw_and_predict(raw_input_path: str,
         # Remove any training label column if present in raw data
         merged = merged.drop(columns=["label_score"], errors="ignore")
 
-        # Save only the original raw columns plus the predicted score and shortlist
         merged.to_csv(output_path, index=False)
         print(f"Predictions merged into raw data and saved to: {output_path}")
         print(f"Rows in raw file: {len(merged)} | Rows with predictions: {features_df.shape[0]}\n")
         return merged
     else:
-        # fallback: save the features dataframe with predictions (excluding label_score)
         save_df = features_df.copy()
         if "label_score" in save_df.columns:
             save_df = save_df.drop(columns=["label_score"])
@@ -111,7 +107,6 @@ def main():
 
     result_df = process_raw_and_predict(args.raw, args.model, args.out, args.cleaned)
 
-    # Print brief summary
     print("--- Prediction summary (top 5 rows) ---")
     cols_to_show = [c for c in ["candidate_id", "job_id", "predicted_score", "shortlist"] if c in result_df.columns]
     print(result_df[cols_to_show].head())
