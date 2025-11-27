@@ -69,10 +69,14 @@ def train_model(df):
     print("Test R² :", r2_score(y_test, test_pred))
 
     # Save Model
-    joblib.dump(final_model, "../models/best_model.joblib")
-    print("\nModel saved to: models/best_model.joblib")
+    joblib.dump(final_model, "../models/best_decision_tree_model.joblib")
+    print("\nModel saved to: models/best_decision_tree_model.joblib")
 
-    return final_model
+    return {
+        "model": final_model,
+        "mse": mean_squared_error(y_test, test_pred),
+        "r2": r2_score(y_test, test_pred)
+    }
 
 
 
@@ -105,7 +109,8 @@ if __name__ == "__main__":
     df = load_dataset()
 
     print("Training model...")
-    model = train_model(df)
+    result = train_model(df)
+    model = result["model"]
 
     example = {
         "candidate_skill_count": 6,

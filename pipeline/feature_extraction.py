@@ -41,7 +41,7 @@ def extract_features(df):
     return df
 
 if __name__ == "__main__":
-    df = pd.read_csv("..data/processed/cleaned_dataset.csv")
+    df = pd.read_csv("../data/processed/cleaned_dataset.csv")
     df = extract_features(df)
 
     df.to_csv("../data/processed/feature_extracted_dataset.csv", index=False)
