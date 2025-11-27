@@ -56,16 +56,17 @@ The raw input consists of 10,000+ rows of candidate-job pairs:
 
 **Example row:**
 
-| Field                   | Example                                     |
-| ----------------------- | ------------------------------------------- | ----------- | ----------- | --- | --- | ---- | --- | --- |
-| candidate_id            | c103                                        |
-| job_id                  | j180                                        |
-| role                    | financial analyst                           |
-| candidate_skills        | sales                                       | support     | docker      | seo | c   | node | crm | git |
-| recruiter_skills        | git                                         | prototyping | sales       | seo |
-| recruiter_priority_list | seo                                         | sales       | prototyping | git |
-| recruiter_skill_weights | {"seo":5,"sales":4,"prototyping":3,"git":2} |
-| experience_years        | 11                                          |
+| Field                    | Example                                                  |
+|--------------------------|-----------------------------------------------------------|
+| candidate_id             | c103                                                      |
+| job_id                   | j180                                                      |
+| role                     | financial analyst                                        |
+| candidate_skills         | sales \| support \| docker \| seo \| c \| node \| crm \| git |
+| recruiter_skills         | git \| prototyping \| sales \| seo                       |
+| recruiter_priority_list  | seo \| sales \| prototyping \| git                       |
+| recruiter_skill_weights  | {"seo":5,"sales":4,"prototyping":3,"git":2}              |
+| experience_years         | 11                                                        |
+
 
 The dataset is cleaned and transformed for training.
 
@@ -79,9 +80,12 @@ To make the data usable by ML, raw fields are converted into numerical features:
 
 Measures how well candidate skills match recruiter’s weighted skills.
 
-weighted_match=∑(candidate has skill×weight)∑(all recruiter weights)weighted_match = \frac{\sum(\text{candidate has skill} \times \text{weight})}{\sum(\text{all recruiter weights})}
+Let  $weighted match = 
+\frac{\sum(\text{candidate has skill} \times \text{weight})}
+{\sum(\text{all recruiter weights})}$.
 
-weighted_match=∑(all recruiter weights)∑(candidate has skill×weight)
+
+
 
 Range → **0.0 to 1.0**
 
