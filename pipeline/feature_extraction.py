@@ -27,15 +27,28 @@ def extract_features(df):
     )
 
     def compute_label_score(row):
-        noise = np.random.normal(0, 0.20)
+        # base pattern (weaker correlation)
         score = (
             1
-            + 3.5 * row["weighted_match_ratio"]
-            + 0.1 * row["candidate_skill_count"]
-            - 0.05 * row["recruiter_skill_count"]
-            + noise
+            + 3 * row["weighted_match_ratio"]
+            + 0.05 * row["candidate_skill_count"]
+            - 0.02 * row["recruiter_skill_count"]
         )
-        return round(np.clip(score, 1, 5), 2)
+
+        # Non-linearity (makes pattern harder to learn)
+        score += (row["weighted_match_ratio"] ** 2) * 0.5
+
+        # Moderate Gaussian noise
+        score += np.random.normal(0, 0.6)
+
+        # Random human-like variation
+        score += np.random.uniform(-0.5, 0.5)
+
+        # Clip final result
+        score = np.clip(score, 1, 5)
+
+        return round(score, 2)
+
     df["label_score"] = df.apply(compute_label_score, axis=1)
 
     return df

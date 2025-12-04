@@ -4,3 +4,4 @@ data/raw/Raw_Data.csv
 data/processed
 __pycache__/
 *.pyc
+synthetic.py
