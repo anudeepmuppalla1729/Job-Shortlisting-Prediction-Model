@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                                                                                                                  # **Job Candidate Qualification Scoring Using Machine Learning**
+# **Job Candidate Qualification Scoring Using Machine Learning**
 
 ### _A Priority-Based Skill Matching ML System_
 
