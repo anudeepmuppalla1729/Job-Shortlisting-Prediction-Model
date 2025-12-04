@@ -1,0 +1,3 @@
+candidate_id,job_id,role,candidate_skills,recruiter_skills,recruiter_priority_list,recruiter_skill_weights,experience_years
+c103,j180,financial analyst,sales|support|docker|seo|c|node|crm|git,git|prototyping|sales|seo,seo|sales|prototyping|git,"{""seo"": 5, ""sales"": 4, ""prototyping"": 3, ""git"": 2}",11
+c200,j190,devops engineer,ml|node|java|git|python|networking,networking|git|java|cloud|python|node,git|java|cloud|node|networking|python,"{""git"": 5, ""java"": 4, ""cloud"": 3, ""node"": 2, ""networking"": 1, ""python"": 1}",6

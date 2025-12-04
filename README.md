@@ -6,7 +6,7 @@
 
 ## **Project Overview:**
 
-This project builds a **Machine Learning model** that predicts how well a candidate matches a job requirement based on:
+This project 
 
 - candidate skills
 - recruiter-required skills
@@ -25,7 +25,7 @@ This system can be integrated into:
 - Resume screening platforms
 - Internal hiring dashboards
 
----
+---builds a **Machine Learning model** that predicts how well a candidate matches a job requirement based on:
 
 ## **Problem Statement:**
 
