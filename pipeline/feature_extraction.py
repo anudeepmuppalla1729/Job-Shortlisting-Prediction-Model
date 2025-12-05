@@ -30,7 +30,7 @@ def extract_features(df):
         # base pattern (weaker correlation)
         score = (
             1
-            + 3 * row["weighted_match_ratio"]
+            + 3 * row["weighted_match_ratio"] + 0.5* row["experience_years"]
             + 0.05 * row["candidate_skill_count"]
             - 0.02 * row["recruiter_skill_count"]
         )
